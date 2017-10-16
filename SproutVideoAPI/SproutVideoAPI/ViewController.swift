@@ -10,18 +10,18 @@ import UIKit
 import Foundation
 import AVFoundation
 
+
 class ViewController: UIViewController {
     
-    @IBOutlet weak var videoPreviewLayer: UIView!
     
     @IBOutlet weak var vidTitle: UILabel!
     @IBOutlet weak var vidDescription: UILabel!
     
     
     var player = AVPlayer()
-    var avpController = AVPlayerViewController()
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,11 +29,11 @@ class ViewController: UIViewController {
             print("parsing json")
         }
         
+        createVideo()
         
-       
         
     }
-  
+    
     
     func getAPIResponse(completion: @escaping ([String: Any]?) -> Void) {
         
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         // contains the block that will fire when we get the results from the request. We’ll get back three optionals: NSData containing the raw body data from the response, an NSURLResponse object with metadata from the response and maybe an NSError.
         let task = session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-//                let response = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+                //                let response = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
                 do {
                     let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     print("👀", response as Any)
@@ -60,22 +60,39 @@ class ViewController: UIViewController {
         }
         
         task.resume()
-        
     }
     
     func parseJson(response: () -> Void) {
         
         getAPIResponse { (answerString) in
-            print("this is the string called in viewdidload: \(answerString)")
+            print("this is the string called in viewdidload: \(String(describing: answerString))")
         }
     }
     
     
+    func createVideo() {
+        
+        let chloe = NSURL(string: "https://api-files.sproutvideo.com/file/4c9addb31a1de4c4c4/7a801fcc936b0830/240.mp4")
+        let player = AVPlayer(url:  chloe! as URL)
+        let playerLayer = AVPlayerLayer()
+        playerLayer.player = player
+        playerLayer.frame = CGRect(x: 0.0, y: 0.0, width: 300.0, height: 300.0)
+        playerLayer.frame = self.view.bounds
+        playerLayer.backgroundColor = UIColor.lightGray.cgColor
+        view.layer.addSublayer(playerLayer)
+        player.play()
+        
+        
+    }
     
     
     
-
 }
+
+
+
+
+
 
 
 
