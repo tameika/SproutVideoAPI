@@ -17,20 +17,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var vidTitle: UILabel!
     @IBOutlet weak var vidDescription: UILabel!
     
-    var videoDetails: (String, String)!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getAPIResponse { (response) in
-            self.parseJson(response: {
-                print("this works")
-            })
-        }
-        
         createVideo()
-        
-        
+  
     }
     
     
@@ -46,7 +39,7 @@ class ViewController: UIViewController {
         // contains the block that will fire when we get the results from the request. We’ll get back three optionals: NSData containing the raw body data from the response, an NSURLResponse object with metadata from the response and maybe an NSError.
         let task = session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                //                let response = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+                // let response = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
                 do {
                     let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     print("👀", response as Any)
@@ -54,21 +47,18 @@ class ViewController: UIViewController {
                 } catch let error {
                     print(error)
                 }
-                
             }
         }
-        
         task.resume()
     }
     
-    func parseJson(response: () -> Void) {
+    
+    func parseJson(value: () -> Void) {
         
         getAPIResponse { (answerString) in
             print("this is the string called in viewdidload: \(String(describing: answerString))")
             guard let response = answerString else { print("unwrapping response failed"); return }
             guard let videos = response["videos"] as? [String: Any] else { return }
-            print("👇🏻")
-            
             for (_, _) in videos {
                 print("👁")
                 guard let videoTitle = videos["title"] as? String else { return }
@@ -77,11 +67,7 @@ class ViewController: UIViewController {
                 print("🤳🏽",videoDescription)
                 self.vidTitle.text = videoTitle
                 self.vidDescription.text = videoDescription
-                print("👥")
             }
-            
-           print("👨🏻‍💼 outside for-loop")
-            
         }
         print("🌶 outside api func")
     }
@@ -99,8 +85,6 @@ class ViewController: UIViewController {
         view.layer.addSublayer(playerLayer)
         player.play()
         player.allowsExternalPlayback = true
-        
-        
     }
     
     
