@@ -17,16 +17,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var vidTitle: UILabel!
     @IBOutlet weak var vidDescription: UILabel!
     
-    
-    var player = AVPlayer()
-    
-    
+    var videoDetails: (String, String)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        parseJson {
-            print("parsing json")
+        getAPIResponse { (response) in
+            self.parseJson(response: {
+                print("this works")
+            })
         }
         
         createVideo()
@@ -66,7 +65,25 @@ class ViewController: UIViewController {
         
         getAPIResponse { (answerString) in
             print("this is the string called in viewdidload: \(String(describing: answerString))")
+            guard let response = answerString else { print("unwrapping response failed"); return }
+            guard let videos = response["videos"] as? [String: Any] else { return }
+            print("👇🏻")
+            
+            for (_, _) in videos {
+                print("👁")
+                guard let videoTitle = videos["title"] as? String else { return }
+                guard let videoDescription = videos["description"] as? String else { return }
+                print("✍🏽",videoTitle)
+                print("🤳🏽",videoDescription)
+                self.vidTitle.text = videoTitle
+                self.vidDescription.text = videoDescription
+                print("👥")
+            }
+            
+           print("👨🏻‍💼 outside for-loop")
+            
         }
+        print("🌶 outside api func")
     }
     
     
@@ -81,6 +98,7 @@ class ViewController: UIViewController {
         playerLayer.backgroundColor = UIColor.lightGray.cgColor
         view.layer.addSublayer(playerLayer)
         player.play()
+        player.allowsExternalPlayback = true
         
         
     }
