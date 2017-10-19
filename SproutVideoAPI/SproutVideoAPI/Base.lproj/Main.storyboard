@@ -17,17 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feU-vt-rNu" userLabel="Title">
-                                <rect key="frame" x="89" y="434" width="178" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-Gi-9ip" userLabel="Description">
+                                <rect key="frame" x="112" y="537" width="150" height="75"/>
                                 <color key="backgroundColor" red="0.71501713140000001" green="0.81443250379999999" blue="0.75520653959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-Gi-9ip" userLabel="Description">
-                                <rect key="frame" x="89" y="494" width="178" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feU-vt-rNu" userLabel="Title">
+                                <rect key="frame" x="112" y="467" width="150" height="40"/>
                                 <color key="backgroundColor" red="0.71501713140000001" green="0.81443250379999999" blue="0.75520653959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -35,6 +33,13 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="feU-vt-rNu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AEG-oh-xny"/>
+                            <constraint firstItem="E2R-Gi-9ip" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="231" id="Aci-VN-dQU"/>
+                            <constraint firstItem="E2R-Gi-9ip" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YcP-Ka-8Qe"/>
+                            <constraint firstItem="feU-vt-rNu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="143" id="jaT-TB-Rt8"/>
+                            <constraint firstItem="E2R-Gi-9ip" firstAttribute="width" secondItem="feU-vt-rNu" secondAttribute="width" id="kwS-56-kCT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>

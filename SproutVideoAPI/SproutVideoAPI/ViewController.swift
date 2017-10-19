@@ -23,7 +23,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         createVideo()
-  
     }
     
     
@@ -39,7 +38,6 @@ class ViewController: UIViewController {
         // contains the block that will fire when we get the results from the request. We’ll get back three optionals: NSData containing the raw body data from the response, an NSURLResponse object with metadata from the response and maybe an NSError.
         let task = session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                // let response = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
                 do {
                     let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     print("👀", response as Any)
@@ -53,18 +51,15 @@ class ViewController: UIViewController {
     }
     
     
-    func parseJson(value: () -> Void) {
+    func parseJson(answer: () -> Void) {
         
         getAPIResponse { (answerString) in
             print("this is the string called in viewdidload: \(String(describing: answerString))")
             guard let response = answerString else { print("unwrapping response failed"); return }
             guard let videos = response["videos"] as? [String: Any] else { return }
             for (_, _) in videos {
-                print("👁")
                 guard let videoTitle = videos["title"] as? String else { return }
                 guard let videoDescription = videos["description"] as? String else { return }
-                print("✍🏽",videoTitle)
-                print("🤳🏽",videoDescription)
                 self.vidTitle.text = videoTitle
                 self.vidDescription.text = videoDescription
             }
@@ -86,8 +81,6 @@ class ViewController: UIViewController {
         player.play()
         player.allowsExternalPlayback = true
     }
-    
-    
     
 }
 
